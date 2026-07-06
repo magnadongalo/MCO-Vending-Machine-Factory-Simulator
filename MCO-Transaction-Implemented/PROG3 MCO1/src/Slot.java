@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 
 public class Slot {
+    private Item itemType;
     private ArrayList<Item> items;
     private int count;
+    private int startingCount;
     private final int slotID;
     private float price;
 
     public Slot(int count, int slotID, float price, Item item) {
         int i;
-        items = new ArrayList<>();
+        this.itemType = item;
+        items = new ArrayList<Item>();
 
         if (count < 10)
             this.count = 10;
@@ -23,7 +26,7 @@ public class Slot {
             this.price = price;
 
         for(i=0;i<count;i++){
-           this.items.add(item);
+           this.items.add(itemType);
         }
     }
 
@@ -33,9 +36,10 @@ public class Slot {
 
     public Item dispense() {
         Item item = null;
-        if (count>0) {
+        if (this.count>0) {
             item = this.items.get(this.items.size()-1);
             this.items.remove(this.items.size()-1);
+            this.count--;
         }
         return item;
     }
@@ -46,5 +50,37 @@ public class Slot {
 
     public float getPrice(){
         return this.price;
+    }
+
+    public Item getItemType(){
+        return this.itemType;
+    }
+
+    public boolean setItemType(Item item){
+        boolean success = false;
+        if(item.getCALORIES()!=this.itemType.getCALORIES() && !(item.getName().equals(this.itemType.getName()))){
+            if(this.items.size()==0){
+                this.itemType = item;
+                success = true;
+            }
+        }
+        return success;
+    }
+
+    public void addItem(){
+        this.items.add(itemType);
+        this.count++;
+    }
+
+    public int getStartingCount(){
+        return this.startingCount;
+    }
+
+    public int getCount(){
+        return this.count;
+    }
+
+    public void setStartingCount(int startingCount){
+        this.startingCount=startingCount;
     }
 }
