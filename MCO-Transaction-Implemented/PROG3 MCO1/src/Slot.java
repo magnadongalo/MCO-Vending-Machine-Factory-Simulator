@@ -18,6 +18,8 @@ public class Slot {
         else
             this.count = count;
 
+        this.startingCount = this.count;
+
         this.slotID = slotID;
 
         if (price <= 0.00f)
