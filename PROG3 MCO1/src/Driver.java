@@ -38,15 +38,27 @@ public class Driver {
                             choice1 = scanner.next().charAt(0);
                             switch (choice1) {
                                 case '1':
+                                    vendingChoice = -1;
+
                                     do{
                                         printVendingMachine(vendingMachine);
+                                        System.out.println("9 - Back to Main Menu");
+                                        System.out.println("------------------------------------");
+                                        System.out.print("Your choice: ");
 
                                         if(scanner.hasNextInt() && vendingChoice != 9){
                                             vendingChoice = scanner.nextInt();
                                             isValid = isValidSlot(vendingMachine, vendingChoice);
 
-                                            if (!isValid)
+                                            if (!isValid && vendingChoice != 9)
                                                 System.out.println("Invalid input!");
+
+                                            if (vendingChoice != 9) {
+                                                if (vendingMachine.getSlots().get(vendingChoice-1).getCount() == 0 && isValid) {
+                                                    System.out.println("Item is out of stock!");
+                                                    isValid = false;
+                                                }
+                                            }
                                         } else if (vendingChoice != 9){
                                             scanner.next();
                                             System.out.println("Invalid input!");
@@ -73,6 +85,9 @@ public class Driver {
 
                                         switch (choice2) {
                                         case '1':
+                                            printVendingMachine(vendingMachine);
+                                            System.out.println("------------------------------------");
+
                                             System.out.println("RESTOCKING");
                                             System.out.print("Slot Number: ");
                                             do{
@@ -87,15 +102,15 @@ public class Driver {
                                             }while(!isValidSlot(vendingMachine, vendingChoice));
 
                                             System.out.print("Amount: ");
-
                                             do{
                                                 vendingChoice1 = scanner.nextInt();
                                                 if (vendingChoice1<=0)
-                                                    System.out.println("Please enter a number above 0: ");
+                                                    System.out.print("Please enter a number above 0: ");
                                             }while (vendingChoice1<=0);
 
                                             vendingMachine.restock(vendingMachine.getSlots().get(vendingChoice-1), vendingChoice1);
-                                            System.out.println(vendingMachine.getSlots().get(vendingChoice-1).getItemType().getName() + " restocked!");
+                                            System.out.println(vendingMachine.getSlots().get(vendingChoice-1).getItemType().getName() + " restocked! ("
+                                                                + vendingMachine.getSlots().get(vendingChoice-1).getCount() + ")");
                                             break;
                                         case '2':
                                             scanner.nextLine(); //send \n to oblivion!!!
@@ -189,9 +204,6 @@ public class Driver {
             System.out.printf("%d - (PHP %.2f) - %-32s - %d left\n", i+1, vendingMachine.getSlots().get(i).getPrice(), vendingMachine.getSlots().get(i).getItemType().getName() + " (" + vendingMachine.getSlots().get(i).getItemType().getCALORIES()+ " kcal)", vendingMachine.getSlots().get(i).getCount());
             num = i + 2;
         }
-        System.out.println(num + " - Back to Main Menu");
-        System.out.println("------------------------------------");
-        System.out.print("Your choice: ");
     }
 
     public static void printMaintenance(){
