@@ -30,25 +30,25 @@ public class VendingMachine {
 
         float prices[] = {10f,25f, 15f, 30f,30f, 20f, 25f, 40f};
 
-        this.balance = new Money();
+        balance = new Money();
         
-        this.balance.setThousand(25);
-        this.balance.setFiveH(50);
-        this.balance.setHund(125);
-        this.balance.setFifty(125);
-        this.balance.setTwenty(50);
-        this.balance.setTen(50);
-        this.balance.setFive(50);
-        this.balance.setOne(50);
-        this.startingBalance = new Money();
-        this.startingBalance.setThousand(this.balance.getThousand());
-        this.startingBalance.setFiveH(this.balance.getFiveH());
-        this.startingBalance.setHund(this.balance.getHund());
-        this.startingBalance.setFifty(this.balance.getFifty());
-        this.startingBalance.setTwenty(this.balance.getTwenty());
-        this.startingBalance.setTen(this.balance.getTen());
-        this.startingBalance.setFive(this.balance.getFive());
-        this.startingBalance.setOne(this.balance.getOne());
+        balance.setThousand(25);
+        balance.setFiveH(50);
+        balance.setHund(125);
+        balance.setFifty(125);
+        balance.setTwenty(50);
+        balance.setTen(50);
+        balance.setFive(50);
+        balance.setOne(50);
+        startingBalance = new Money();
+        startingBalance.setThousand(balance.getThousand());
+        startingBalance.setFiveH(balance.getFiveH());
+        startingBalance.setHund(balance.getHund());
+        startingBalance.setFifty(balance.getFifty());
+        startingBalance.setTwenty(balance.getTwenty());
+        startingBalance.setTen(balance.getTen());
+        startingBalance.setFive(balance.getFive());
+        startingBalance.setOne(balance.getOne());
         //FOR TESTING PURPOSES
 //        balance.setFiveH(0);
 //        balance.setHund(0);
@@ -60,8 +60,8 @@ public class VendingMachine {
 //        balance.setOne(0);
 
         for(int i=0;i<8;i++){
-                Slot slot = new Slot(10, i, prices[i], listOfItems.get(i));
-                this.slots.add(slot);
+                Slot slot = new Slot(10, prices[i], listOfItems.get(i));
+                slots.add(slot);
         }
 
     }
@@ -166,42 +166,42 @@ public class VendingMachine {
                 case 1000:
                     if (balance.getThousand() > 0)
                         exit = true;
-                    this.balance.setThousand(this.balance.getThousand() + payment.getThousand());
+                    balance.setThousand(balance.getThousand() + payment.getThousand());
                     break;
                 case 500:
                     if (balance.getFiveH() <= 0)
                         exit = true;
-                    this.balance.setFiveH(this.balance.getFiveH() + payment.getFiveH());
+                    balance.setFiveH(balance.getFiveH() + payment.getFiveH());
                     break;
                 case 100:
                     if (balance.getHund() <= 0)
                         exit = true;
-                    this.balance.setHund(this.balance.getHund() + payment.getHund());
+                    balance.setHund(balance.getHund() + payment.getHund());
                     break;
                 case 50:
                     if (balance.getFifty() <= 0)
                         exit = true;
-                    this.balance.setFifty(this.balance.getFifty() + payment.getFifty());
+                    balance.setFifty(balance.getFifty() + payment.getFifty());
                     break;
                 case 20:
                     if (balance.getTwenty() <= 0)
                         exit = true;
-                    this.balance.setTwenty(this.balance.getTwenty() + payment.getTwenty());
+                    balance.setTwenty(balance.getTwenty() + payment.getTwenty());
                     break;
                 case 10:
                     if (balance.getTen() <= 0)
                         exit = true;
-                    this.balance.setTen(this.balance.getTen() + payment.getTen());
+                    balance.setTen(balance.getTen() + payment.getTen());
                     break;
                 case 5:
                     if (balance.getFive() <= 0)
                         exit = true;
-                    this.balance.setFive(this.balance.getFive() + payment.getFive());
+                    balance.setFive(balance.getFive() + payment.getFive());
                     break;
                 case 1:
                     if (balance.getOne() <= 0)
                         exit = true;
-                    this.balance.setOne(this.balance.getOne() + payment.getOne());
+                    balance.setOne(balance.getOne() + payment.getOne());
                     break;
                     }  
             }
@@ -212,50 +212,50 @@ public class VendingMachine {
                     switch ((int) f) {
                         case 1000:
                             if (change.getThousand() > 0){
-                                this.balance.setThousand(this.balance.getThousand() - change.getThousand());
+                                balance.setThousand(balance.getThousand() - change.getThousand());
                                 System.out.println("1000: " + change.getThousand());
                             }
                             break;
                         case 500:
                             if (change.getFiveH() > 0){
-                                this.balance.setFiveH(this.balance.getFiveH() - change.getFiveH());
+                                balance.setFiveH(balance.getFiveH() - change.getFiveH());
                                 System.out.println("500: " + change.getFiveH());
                             }
                             break;
                         case 100:
                             if (change.getHund() > 0){
-                                this.balance.setHund(this.balance.getHund() - change.getHund());
+                                balance.setHund(balance.getHund() - change.getHund());
                                 System.out.println("100: " + change.getHund());
                             }
                                 
                             break;
                         case 50:
                             if (change.getFifty() > 0){
-                                this.balance.setFifty(this.balance.getFifty() - change.getFifty());
+                                balance.setFifty(balance.getFifty() - change.getFifty());
                                 System.out.println("50 : " + change.getFifty());
                             }
                             break;
                         case 20:
                             if (change.getTwenty() > 0){
-                                this.balance.setTwenty(this.balance.getTwenty() - change.getTwenty());
+                                balance.setTwenty(balance.getTwenty() - change.getTwenty());
                                 System.out.println("20 : " + change.getTwenty());
                             }
                             break;
                         case 10:
                             if (change.getTen() > 0){
-                                this.balance.setTen(this.balance.getTen() - change.getTen());
+                                balance.setTen(balance.getTen() - change.getTen());
                                 System.out.println("10 : " + change.getTen());
                             }
                             break;
                         case 5:
                             if (change.getFive() > 0){
-                                this.balance.setFive(this.balance.getFive() - change.getFive());
+                                balance.setFive(balance.getFive() - change.getFive());
                                 System.out.println("5  : " + change.getFive());
                             }
                             break;
                         case 1:
                             if (change.getOne() > 0){
-                                this.balance.setOne(this.balance.getOne() - change.getOne());
+                                balance.setOne(balance.getOne() - change.getOne());
                                 System.out.println("1  : " + change.getOne());
                             }
                             break;
@@ -273,35 +273,35 @@ public class VendingMachine {
         for(i=0;i<numItems;i++){
             slot.addItem();
         }
-        this.startingBalance.setThousand(this.balance.getThousand());
-        this.startingBalance.setFiveH(this.balance.getFiveH());
-        this.startingBalance.setHund(this.balance.getHund());
-        this.startingBalance.setFifty(this.balance.getFifty());
-        this.startingBalance.setTwenty(this.balance.getTwenty());
-        this.startingBalance.setTen(this.balance.getTen());
-        this.startingBalance.setFive(this.balance.getFive());
-        this.startingBalance.setOne(this.balance.getOne());
+        startingBalance.setThousand(balance.getThousand());
+        startingBalance.setFiveH(balance.getFiveH());
+        startingBalance.setHund(balance.getHund());
+        startingBalance.setFifty(balance.getFifty());
+        startingBalance.setTwenty(balance.getTwenty());
+        startingBalance.setTen(balance.getTen());
+        startingBalance.setFive(balance.getFive());
+        startingBalance.setOne(balance.getOne());
         slot.setStartingCount(slot.getCount());
     }
 
     public void replenish() {
-        this.balance.setThousand(25);
-        this.balance.setFiveH(50);
-        this.balance.setHund(125);
-        this.balance.setFifty(125);
-        this.balance.setTwenty(50);
-        this.balance.setTen(50);
-        this.balance.setFive(50);
-        this.balance.setOne(50);
+        balance.setThousand(25);
+        balance.setFiveH(50);
+        balance.setHund(125);
+        balance.setFifty(125);
+        balance.setTwenty(50);
+        balance.setTen(50);
+        balance.setFive(50);
+        balance.setOne(50);
     }
 
     public void printSummary() {
         System.out.println("====================================");
         System.out.println("TRANSACTION SUMMARY:");
-        System.out.println("Total amount collected: " + (this.balance.calculateTotal()-this.startingBalance.calculateTotal()));
+        System.out.println("Total amount collected: " + (balance.calculateTotal()-startingBalance.calculateTotal()));
         System.out.println("ITEMS SOLD: ");
-        for(int i = 0; i<this.slots.size();i++){
-            System.out.println(this.slots.get(i).getItemType().getName() + ": " + (this.slots.get(i).getStartingCount()-this.slots.get(i).getCount()) + " Sold");
+        for(int i = 0; i<slots.size();i++){
+            System.out.printf("%-20s %d sold\n", slots.get(i).getItemType().getName() + ":", slots.get(i).getStartingCount()-slots.get(i).getCount());
         }
         System.out.println("====================================");
     }

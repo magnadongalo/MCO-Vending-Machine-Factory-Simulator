@@ -22,39 +22,39 @@ public class Money {
     }
 
     public int getThousand() {
-        return this.thousand;
+        return thousand;
     }
 
     public int getFiveH() {
-        return this.fiveH;
+        return fiveH;
     }
 
     public int getHund() {
-        return this.hund;
+        return hund;
     }
 
     public int getFifty() {
-        return this.fifty;
+        return fifty;
     }
 
     public int getTwenty() {
-        return this.twenty;
+        return twenty;
     }
 
     public int getTen() {
-        return this.ten;
+        return ten;
     }
 
     public int getFive() {
-        return this.five;
+        return five;
     }
 
     public int getOne() {
-        return this.one;
+        return one;
     }
 
     public float getTotal() {
-        return this.total;
+        return total;
     }
 
     public void setThousand(int thousand) {
@@ -98,11 +98,11 @@ public class Money {
     }
 
     public float calculateTotal() {
-        this.total = (float) (thousand * 1000 + fiveH * 500
+        total = (float) (thousand * 1000 + fiveH * 500
                 + hund * 100 + fifty * 50
                 + twenty * 20 + ten * 10
                 + five * 5 + one);
 
-        return this.total;
+        return total;
     }
 }

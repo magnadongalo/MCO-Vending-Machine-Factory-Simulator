@@ -3,16 +3,16 @@ public class Item {
     private final float CALORIES;
 
     public Item(String name, float calories) {
-        this.NAME = name;
+        NAME = name;
 
         if (calories <= 0)
-            this.CALORIES = 10.0f;
+            CALORIES = 10.0f;
         else
-            this.CALORIES = calories;
+            CALORIES = calories;
     }
 
     public String getName() {
-        return this.NAME;
+        return NAME;
     }
 
     public float getCALORIES() {
