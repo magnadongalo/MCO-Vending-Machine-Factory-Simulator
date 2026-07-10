@@ -4,6 +4,10 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ *@author Gutierrez, Jonathan Jr
+ *@author Maullon, Edriel Lexine
+ */
 public class Driver {
     public static void main(String[] args) {
         VendingMachine vendingMachine = null;
