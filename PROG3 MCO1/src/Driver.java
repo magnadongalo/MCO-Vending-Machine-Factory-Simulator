@@ -22,7 +22,7 @@ public class Driver {
             switch (choice) {
                 case '1':
                     vendingMachine = new VendingMachine();
-                    System.out.println("Vending Machine Created\n\n\n");
+                    System.out.println("Vending Machine Created");
                     break;
                 case '2':
                     if(vendingMachine!=null) {
@@ -154,7 +154,7 @@ public class Driver {
     }
 
     public static void printOpenMenu(){
-        System.out.println("====================================");
+        System.out.println("\n\n====================================");
         System.out.println("         VENDING MACHINE SIM");
         System.out.println("====================================");
         System.out.println("1 - Create Vending Machine");
@@ -165,7 +165,7 @@ public class Driver {
     }
 
     public static void printTestMenu(){
-        System.out.println("====================================");
+        System.out.println("\n\n====================================");
         System.out.println("         TEST VENDING MACHINE");
         System.out.println("====================================");
         System.out.println("1 - Vending Features");
@@ -177,11 +177,11 @@ public class Driver {
 
     public static void printVendingMachine(VendingMachine vendingMachine){
         int num = 0;
-        System.out.println("====================================");
+        System.out.println("\n\n====================================");
         System.out.println("         YOUR VENDING MACHINE");
         System.out.println("====================================");
         for(int i=0; i<vendingMachine.getSlots().size();i++){
-            System.out.println((i+1) + " - " +  vendingMachine.getSlots().get(i).getItemType().getName() + " (" + vendingMachine.getSlots().get(i).getItemType().getCALORIES()+ " kcal) " + " - " + vendingMachine.getSlots().get(i).getCount() + " left.");
+            System.out.printf("%d - (PHP %.2f) - %-32s - %d left\n", i+1, vendingMachine.getSlots().get(i).getPrice(), vendingMachine.getSlots().get(i).getItemType().getName() + " (" + vendingMachine.getSlots().get(i).getItemType().getCALORIES()+ " kcal)", vendingMachine.getSlots().get(i).getCount());
             num = i + 2;
         }
         System.out.println(num + " - Back to Main Menu");
@@ -190,7 +190,7 @@ public class Driver {
     }
 
     public static void printMaintenance(){
-        System.out.println("====================================");
+        System.out.println("\n\n====================================");
         System.out.println("         YOUR VENDING MACHINE");
         System.out.println("====================================");
         System.out.println("1 - Restock Slot");
