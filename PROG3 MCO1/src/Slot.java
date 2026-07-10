@@ -106,7 +106,7 @@ public class Slot {
      */
     public boolean setItemType(Item item){
         boolean success = false;
-        if(item.getCALORIES()!=this.itemType.getCALORIES() && !(item.getName().equals(this.itemType.getName()))){
+        if(item.getCALORIES()!=this.itemType.getCALORIES() && !(item.getNAME().equals(this.itemType.getNAME()))){
             if(items.size()==0){
                 itemType = item;
                 success = true;

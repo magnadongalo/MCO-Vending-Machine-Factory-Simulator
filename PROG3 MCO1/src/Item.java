@@ -34,7 +34,7 @@ public class Item {
      *
      * @return the item's name
      */
-    public String getName() {
+    public String getNAME() {
         return NAME;
     }
 

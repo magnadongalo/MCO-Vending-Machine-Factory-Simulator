@@ -1,6 +1,4 @@
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Simulates a vending machine that stocks items in Slots, accepts
@@ -369,7 +367,7 @@ public class VendingMachine {
         System.out.println("Total amount collected: " + (balance.calculateTotal()-startingBalance.calculateTotal()));
         System.out.println("ITEMS SOLD: ");
         for(int i = 0; i<slots.size();i++){
-            System.out.printf("%-20s %d sold\n", slots.get(i).getItemType().getName() + ":", slots.get(i).getStartingCount()-slots.get(i).getCount());
+            System.out.printf("%-20s %d sold\n", slots.get(i).getItemType().getNAME() + ":", slots.get(i).getStartingCount()-slots.get(i).getCount());
         }
         System.out.println("====================================");
     }

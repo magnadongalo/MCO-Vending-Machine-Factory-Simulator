@@ -1,8 +1,5 @@
 
 import java.util.Scanner;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
  *@author Gutierrez, Jonathan Jr
@@ -70,7 +67,7 @@ public class Driver {
 
                                         if(payment(scanner, vendingMachine.getSlots().get(vendingChoice-1).getPrice(), payment)){
                                             if(vendingMachine.transact(payment, vendingMachine.getSlots().get(vendingChoice-1).getPrice()).getTotal()!=payment.getTotal()){
-                                                System.out.printf("%s Dispensed\n", vendingMachine.dispenseItem(vendingMachine.getSlots().get(vendingChoice-1)).getName());
+                                                System.out.printf("%s Dispensed\n", vendingMachine.dispenseItem(vendingMachine.getSlots().get(vendingChoice-1)).getNAME());
                                             }
                                         }
                                     }
@@ -109,7 +106,7 @@ public class Driver {
                                             }while (vendingChoice1<=0);
 
                                             vendingMachine.restock(vendingMachine.getSlots().get(vendingChoice-1), vendingChoice1);
-                                            System.out.println(vendingMachine.getSlots().get(vendingChoice-1).getItemType().getName() + " restocked! ("
+                                            System.out.println(vendingMachine.getSlots().get(vendingChoice-1).getItemType().getNAME() + " restocked! ("
                                                                 + vendingMachine.getSlots().get(vendingChoice-1).getCount() + ")");
                                             break;
                                         case '2':
@@ -201,7 +198,7 @@ public class Driver {
         System.out.println("         YOUR VENDING MACHINE");
         System.out.println("====================================");
         for(int i=0; i<vendingMachine.getSlots().size();i++){
-            System.out.printf("%d - (PHP %.2f) - %-32s - %d left\n", i+1, vendingMachine.getSlots().get(i).getPrice(), vendingMachine.getSlots().get(i).getItemType().getName() + " (" + vendingMachine.getSlots().get(i).getItemType().getCALORIES()+ " kcal)", vendingMachine.getSlots().get(i).getCount());
+            System.out.printf("%d - (PHP %.2f) - %-32s - %d left\n", i+1, vendingMachine.getSlots().get(i).getPrice(), vendingMachine.getSlots().get(i).getItemType().getNAME() + " (" + vendingMachine.getSlots().get(i).getItemType().getCALORIES()+ " kcal)", vendingMachine.getSlots().get(i).getCount());
             num = i + 2;
         }
     }
