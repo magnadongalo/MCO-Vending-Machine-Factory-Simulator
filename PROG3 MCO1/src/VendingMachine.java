@@ -10,15 +10,14 @@ public class VendingMachine {
     public VendingMachine(){
         ArrayList<Item> listOfItems = new ArrayList<>();
         slots = new ArrayList<>();
-        //placeholder
-        Item item1 = new Item("Item1", 1);
-        Item item2 = new Item("Item2", 1);
-        Item item3 = new Item("Item3", 1);
-        Item item4 = new Item("Item4", 1);
-        Item item5 = new Item("Item5", 1);
-        Item item6 = new Item("Item6", 1);
-        Item item7 = new Item("Item7", 1);
-        Item item8 = new Item("Item8", 1);
+        Item item1 = new Item("Ice Cup", 0);
+        Item item2 = new Item("Milk", 100);
+        Item item3 = new Item("Assorted Jelly", 150);
+        Item item4 = new Item("Sweetened Banana", 150);
+        Item item5 = new Item("Sweet Corn", 85);
+        Item item6 = new Item("Ube Halaya", 95);
+        Item item7 = new Item("Pinipig", 90);
+        Item item8 = new Item("Macapuno", 130);
         listOfItems.add(item1);
         listOfItems.add(item2);
         listOfItems.add(item3);
@@ -28,7 +27,7 @@ public class VendingMachine {
         listOfItems.add(item7);
         listOfItems.add(item8);
 
-        float prices[] = {10f,20f,30f,40f,50f,60f,70f,80f};
+        float prices[] = {10f,25f, 15f, 30f,30f, 20f, 25f, 40f};
 
         this.balance = new Money();
         
