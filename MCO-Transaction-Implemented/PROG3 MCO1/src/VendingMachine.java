@@ -2,15 +2,31 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Simulates a vending machine that stocks items in {@link Slot}s, accepts
+ * payments, dispenses items and change, and tracks its cash balance.
+ * <p>
+ * On construction, the machine is pre-loaded with a fixed set of eight
+ * items (each in its own slot) and a starting cash balance made up of
+ * different Philippine peso money denominations.
+ */
 public class VendingMachine {
+    /** The slots managed by this vending machine, each holding one item type. */
     private ArrayList<Slot> slots;
+     /** The current cash balance held by the vending machine. */
     private Money balance;
+    /** The cash balance recorded at the start of operation. Refreshes once the vending machine is restocked */
     private Money startingBalance;
 
+    /**
+     * Constructs a new VendingMachine, pre-populating it with eight
+     * items consisting of Halo-Halo ingredientes (each stocked in its own slot 
+     * with 10 units and a preset price) and initializing the cash balance with 
+     * a starting balance of peso denominations.
+     */
     public VendingMachine(){
         ArrayList<Item> listOfItems = new ArrayList<>();
         slots = new ArrayList<>();
-        //placeholder
         Item item1 = new Item("Ice Cup", 0);
         Item item2 = new Item("Milk", 100);
         Item item3 = new Item("Assorted Jelly", 150);
@@ -49,15 +65,6 @@ public class VendingMachine {
         startingBalance.setTen(balance.getTen());
         startingBalance.setFive(balance.getFive());
         startingBalance.setOne(balance.getOne());
-        //FOR TESTING PURPOSES
-//        balance.setFiveH(0);
-//        balance.setHund(0);
-//        balance.setFifty(0);
-//
-//        balance.setTwenty(0);
-//        balance.setTen(0);
-//        balance.setFive(0);
-//        balance.setOne(0);
 
         for(int i=0;i<8;i++){
                 Slot slot = new Slot(10, prices[i], listOfItems.get(i));
@@ -66,11 +73,33 @@ public class VendingMachine {
 
     }
 
+    /**
+     * Dispenses an item from the given slot.
+     *
+     * @param slot the slot to dispense the item from
+     * @return the dispensed  Item, or null if the slot is empty
+     */
     public Item dispenseItem(Slot slot) {
         Item item = slot.dispense();
         return item;
     }
 
+     /**
+     * Processes a purchase transaction: computes change owed based on the
+     * payment and item price, attempts to make that change using the
+     * machine's available cash balance, and updates the balance
+     * accordingly.
+     *
+     * If the exact change cannot be made from the available denominations
+     * in balance the transaction is cancelled and the full payment is 
+     * returned to the caller instead of change.
+     *
+     * @param payment the money paid by the customer
+     * @param price the price of the item being purchased
+     * @return a Money object representing the change dispensed to
+     *         the customer, or the original payment if the
+     *         transaction could not be completed
+     */
     public Money transact(Money payment, float price) {
         float res = payment.calculateTotal() - price;
         float[] arr = {1000f, 500f, 100f, 50f, 20f, 10f, 5f, 1f};
@@ -268,6 +297,14 @@ public class VendingMachine {
             return payment; //Isukli mo yung buong bayad LMFAO
     }
 
+    /**
+     * Restocks the given slot with additional items and records the
+     * current balance and count of items in the slot as the new 
+     * starting point for the transaction summary.
+     *
+     * @param slot the slot to restock
+     * @param numItems the number of items to add to the slot
+     */
     public void restock(Slot slot, int numItems) {
         int i;
         for(i=0;i<numItems;i++){
@@ -284,6 +321,10 @@ public class VendingMachine {
         slot.setStartingCount(slot.getCount());
     }
 
+    /**
+     * Resets the vending machine's cash balance to its default set of
+     * denomination counts.
+     */
     public void replenish() {
         balance.setThousand(25);
         balance.setFiveH(50);
