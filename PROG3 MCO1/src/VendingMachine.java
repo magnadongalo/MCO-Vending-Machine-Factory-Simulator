@@ -164,7 +164,7 @@ public class VendingMachine {
             for(float f : arr){
                 switch ((int) f) {
                 case 1000:
-                    if (balance.getThousand() > 0)
+                    if (balance.getThousand() <= 0)
                         exit = true;
                     balance.setThousand(balance.getThousand() + payment.getThousand());
                     break;
