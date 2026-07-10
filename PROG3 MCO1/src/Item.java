@@ -1,21 +1,21 @@
 public class Item {
-    private final String name;
-    private final float calories;
+    private final String NAME;
+    private final float CALORIES;
 
     public Item(String name, float calories) {
-        this.name = name;
+        this.NAME = name;
 
         if (calories <= 0)
-            this.calories = 10.0f;
+            this.CALORIES = 10.0f;
         else
-            this.calories = calories;
+            this.CALORIES = calories;
     }
 
     public String getName() {
-        return this.name;
+        return this.NAME;
     }
 
-    public float getCalories() {
-        return calories;
+    public float getCALORIES() {
+        return CALORIES;
     }
 }
