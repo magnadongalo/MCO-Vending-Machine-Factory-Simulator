@@ -4,6 +4,10 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ *@author Gutierrez, Jonathan Jr
+ *@author Maullon, Edriel Lexine
+ */
 public class Driver {
     public static void main(String[] args) {
         VendingMachine vendingMachine = null;
@@ -37,20 +41,19 @@ public class Driver {
                                     do{
                                         printVendingMachine(vendingMachine);
 
-                                        if(scanner.hasNextInt()){
+                                        if(scanner.hasNextInt() && vendingChoice != 9){
                                             vendingChoice = scanner.nextInt();
                                             isValid = isValidSlot(vendingMachine, vendingChoice);
-                                            if(vendingChoice==(vendingMachine.getSlots().size())+1)
-                                                isValid = true;
-                                            else if (!isValid)
-                                                System.out.println("Please enter a valid Option: ");
-                                        } else {
-                                            scanner.next();
-                                            System.out.println("Please enter a valid Option: ");
-                                        }
-                                    }while(!isValid);
 
-                                    if(vendingChoice!=(vendingMachine.getSlots().size())+1){
+                                            if (!isValid)
+                                                System.out.println("Invalid input!");
+                                        } else if (vendingChoice != 9){
+                                            scanner.next();
+                                            System.out.println("Invalid input!");
+                                        }
+                                    }while(!isValid && vendingChoice < 9);
+
+                                    if (vendingChoice < 9){
                                         payment = new Money();
 
                                         if(payment(scanner, vendingMachine.getSlots().get(vendingChoice-1).getPrice(), payment)){
@@ -82,7 +85,9 @@ public class Driver {
                                                     System.out.print("Please enter a valid Option: ");
                                                 }
                                             }while(!isValidSlot(vendingMachine, vendingChoice));
+
                                             System.out.print("Amount: ");
+
                                             do{
                                                 vendingChoice1 = scanner.nextInt();
                                                 if (vendingChoice1<=0)
@@ -203,7 +208,7 @@ public class Driver {
 
     public static boolean isValidSlot(VendingMachine vendingMachine, int choice){
         boolean isValid = false;
-        for(int i=1;i<(vendingMachine.getSlots().size());i++){
+        for(int i=1;i<=(vendingMachine.getSlots().size());i++){
             if (i==choice)
                 isValid = true;
         }
