@@ -70,6 +70,8 @@ public class Driver {
                                                 System.out.printf("%s Dispensed\n", vendingMachine.dispenseItem(vendingMachine.getSlots().get(vendingChoice-1)).getNAME());
                                             }
                                         }
+                                        else
+                                            System.out.println("Not enough money inserted! Your payment is returned.");
                                     }
 
                                     break;
