@@ -182,6 +182,7 @@ public class VendingMachine {
 
             if (res != 0f) {
                 System.out.println("Cannot dispense change! Transaction cancelled!");
+                System.out.println("Please replenish the bills and coins of the vending machine!");
                 canTransact = false;
             }
         }
