@@ -63,6 +63,16 @@ public class VendingMachine {
         startingBalance.setFive(balance.getFive());
         startingBalance.setOne(balance.getOne());
 
+//        For testing purposes
+//        balance.setThousand(0);
+//        balance.setFiveH(0);
+//        balance.setHund(0);
+//        balance.setFifty(0);
+//        balance.setTwenty(0);
+//        balance.setTen(0);
+//        balance.setFive(0);
+//        balance.setOne(0);
+
 
         for(int i=0;i<8;i++){
             Slot slot = new Slot(10, prices[i] ,listOfItems.get(i));
