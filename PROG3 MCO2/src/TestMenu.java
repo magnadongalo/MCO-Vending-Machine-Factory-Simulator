@@ -12,6 +12,7 @@ public class TestMenu extends JFrame implements ActionListener {
     private VendingMachine vendingMachine;
 
     public TestMenu(VendingMachine vendingMachine) {
+        this.setTitle("Test Vending Machine");
         this.vendingMachine = vendingMachine;
 
         this.setSize(600, 600);
@@ -52,13 +53,15 @@ public class TestMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vendingFeatures) {
             //invoke vendingFeatures menu
+            new FeaturesMenu(vendingMachine);
             this.dispose();
         } else if (e.getSource() == maintenance) {
             //invoke maintenance menu
+            new MaintenanceMenu(vendingMachine);
             this.dispose();
         } else if (e.getSource() == returnToMenu) {
-            this.dispose();
             new VMFrame();
+            this.dispose();
         }
     }
 }

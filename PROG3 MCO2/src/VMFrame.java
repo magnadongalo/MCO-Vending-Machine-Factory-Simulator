@@ -13,6 +13,7 @@ public class VMFrame extends JFrame implements ActionListener{
     private VendingMachine vendingMachine;
 
     public VMFrame() {
+        this.setTitle("Vending Machine Simulator");
 
         this.setSize(new Dimension(600, 600));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

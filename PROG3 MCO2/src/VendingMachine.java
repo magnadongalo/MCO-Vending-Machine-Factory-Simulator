@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 /**
@@ -193,6 +194,15 @@ public class VendingMachine {
             if (res != 0f) {
                 System.out.println("Cannot dispense change! Transaction cancelled!");
                 System.out.println("Please replenish the bills and coins of the vending machine!");
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "<html>Cannot dispense change.<br>" +
+                                "Please replenish bills and coins of the vending machine.</html>",
+                        "Transaction Cancelled",
+                        JOptionPane.ERROR_MESSAGE
+                );
+
                 canTransact = false;
             }
         }
@@ -227,67 +237,82 @@ public class VendingMachine {
                     break;
                 }
             }
-            System.out.printf("Change Dispensed: Php %.2f\n", change.calculateTotal());
-            if (change.calculateTotal() != 0)
-            {
-                for (float f : arr) {
-                    switch ((int) f) {
-                        case 1000:
-                            if (change.getThousand() > 0){
-                                balance.setThousand(balance.getThousand() - change.getThousand());
-                                System.out.println("1000: " + change.getThousand());
-                            }
-                            break;
-                        case 500:
-                            if (change.getFiveH() > 0){
-                                balance.setFiveH(balance.getFiveH() - change.getFiveH());
-                                System.out.println("500 : " + change.getFiveH());
-                            }
-                            break;
-                        case 100:
-                            if (change.getHund() > 0){
-                                balance.setHund(balance.getHund() - change.getHund());
-                                System.out.println("100 : " + change.getHund());
-                            }
-                                
-                            break;
-                        case 50:
-                            if (change.getFifty() > 0){
-                                balance.setFifty(balance.getFifty() - change.getFifty());
-                                System.out.println("50  : " + change.getFifty());
-                            }
-                            break;
-                        case 20:
-                            if (change.getTwenty() > 0){
-                                balance.setTwenty(balance.getTwenty() - change.getTwenty());
-                                System.out.println("20  : " + change.getTwenty());
-                            }
-                            break;
-                        case 10:
-                            if (change.getTen() > 0){
-                                balance.setTen(balance.getTen() - change.getTen());
-                                System.out.println("10  : " + change.getTen());
-                            }
-                            break;
-                        case 5:
-                            if (change.getFive() > 0){
-                                balance.setFive(balance.getFive() - change.getFive());
-                                System.out.println("5   : " + change.getFive());
-                            }
-                            break;
-                        case 1:
-                            if (change.getOne() > 0){
-                                balance.setOne(balance.getOne() - change.getOne());
-                                System.out.println("1   : " + change.getOne());
-                            }
-                            break;
-                    }
-                }
-            }
+            System.out.println(changeDispensedMessage(change, arr));
             return change;
         }
         else
             return payment; //Isukli mo yung buong bayad
+    }
+
+    /**
+     * Concatenates a string that details the details and denominations of the change.
+     *
+     * @param change the change received
+     * @param arr the array of denominations
+     * @return a concatenated string that displays info of the change.
+     */
+    public String changeDispensedMessage(Money change, float[] arr) {
+        StringBuilder res = new StringBuilder();
+
+        res.append(String.format("Change Dispensed: Php %.2f\n", change.calculateTotal()));
+        if (change.calculateTotal() != 0)
+        {
+            for (float f : arr) {
+                switch ((int) f) {
+                    case 1000:
+                        if (change.getThousand() > 0){
+                            balance.setThousand(balance.getThousand() - change.getThousand());
+                            res.append("1000: " + change.getThousand() + "\n");
+                        }
+                        break;
+                    case 500:
+                        if (change.getFiveH() > 0){
+                            balance.setFiveH(balance.getFiveH() - change.getFiveH());
+                            res.append("500 : " + change.getFiveH() + "\n");
+                        }
+                        break;
+                    case 100:
+                        if (change.getHund() > 0){
+                            balance.setHund(balance.getHund() - change.getHund());
+                            res.append("100 : " + change.getHund() + "\n");
+                        }
+
+                        break;
+                    case 50:
+                        if (change.getFifty() > 0){
+                            balance.setFifty(balance.getFifty() - change.getFifty());
+                            res.append("50  : " + change.getFifty() + "\n");
+                        }
+                        break;
+                    case 20:
+                        if (change.getTwenty() > 0){
+                            balance.setTwenty(balance.getTwenty() - change.getTwenty());
+                            res.append("20  : " + change.getTwenty() + "\n");
+                        }
+                        break;
+                    case 10:
+                        if (change.getTen() > 0){
+                            balance.setTen(balance.getTen() - change.getTen());
+                            res.append("10  : " + change.getTen() + "\n");
+                        }
+                        break;
+                    case 5:
+                        if (change.getFive() > 0){
+                            balance.setFive(balance.getFive() - change.getFive());
+                            res.append("5   : " + change.getFive() + "\n");
+                        }
+                        break;
+                    case 1:
+                        if (change.getOne() > 0){
+                            balance.setOne(balance.getOne() - change.getOne());
+                            res.append("1   : " + change.getOne() + "\n");
+                        }
+                        break;
+                }
+            }
+        }
+
+        return res.toString();
     }
 
     /**
