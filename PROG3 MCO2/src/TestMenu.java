@@ -60,7 +60,7 @@ public class TestMenu extends JFrame implements ActionListener {
             new MaintenanceMenu(vendingMachine);
             this.dispose();
         } else if (e.getSource() == returnToMenu) {
-            new VMFrame();
+            new VMFrame(vendingMachine);
             this.dispose();
         }
     }

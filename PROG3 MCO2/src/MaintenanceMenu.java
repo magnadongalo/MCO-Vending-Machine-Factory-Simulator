@@ -10,6 +10,7 @@ public class MaintenanceMenu extends JFrame implements ActionListener {
     private JLabel label = new JLabel("<html><center>MAINTENANCE<br>FEATURES</center></html>");
     private JButton restock, replenish, summary, returnToMenu;
     private VendingMachine vendingMachine;
+    private boolean running = false;
 
     public MaintenanceMenu(VendingMachine vendingMachine) {
         this.setTitle("Maintenance Features");
@@ -53,18 +54,23 @@ public class MaintenanceMenu extends JFrame implements ActionListener {
         masterPanel.add(buttonPanel);
         this.add(masterPanel);
         this.setVisible(true);
+
+        running = true;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == restock) {
             //invoke restock menu
+            new RestockMenu(vendingMachine);
             this.dispose();
         } else if (e.getSource() == replenish) {
             //invoke replenish menu
+            new ReplenishMenu(vendingMachine);
             this.dispose();
         } else if (e.getSource() == summary) {
             //invoke summary menu
+            new SummaryMenu(vendingMachine);
             this.dispose();
         } else if (e.getSource() == returnToMenu) {
             new TestMenu(vendingMachine);

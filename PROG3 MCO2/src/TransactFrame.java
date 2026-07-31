@@ -23,7 +23,7 @@ public class TransactFrame extends JFrame implements ActionListener {
         this.setTitle("Transaction");
         this.vendingMachine = vendingMachine;
 
-        //this.setSize(new Dimension(600, 600));
+        this.setSize(new Dimension(600, 800));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
@@ -121,7 +121,7 @@ public class TransactFrame extends JFrame implements ActionListener {
         masterPanel.add(subPanel);
         masterPanel.add(buttonPanel);
         this.add(masterPanel);
-        this.pack();
+        //this.pack();
         this.setVisible(true);
     }
 

@@ -48,20 +48,16 @@ public class FeaturesMenu extends JFrame implements ActionListener {
     }
 
     private JButton getJButton(VendingMachine vendingMachine, int i) {
-        String[] prices = {"10.00", "25.00", "15.00", "30.00",
-                "30.00", "20.00", "25.00", "40.00"};
-        String[] calories ={"10.0", "100.0", "150.0", "150.0",
-                "85.0", "95.0", "90.0", "130.0"};
-
         JButton button = new JButton("<html><center>" +
                 vendingMachine.getSlots().get(i).getItemType().getNAME() + "<br>" +
-                "Php " + prices[i] + "<br>" + calories[i] + " kcal" + "<br>" +
-                vendingMachine.getSlots().get(i).getCount() + " in stock" +
+                "Php " + String.format("%.2f", vendingMachine.getSlots().get(i).getPrice())
+                + "<br>" + String.format("%.1f", vendingMachine.getSlots().get(i).getItemType().getCALORIES())
+                + " kcal" + "<br>" + vendingMachine.getSlots().get(i).getCount() + " in stock" +
                 "</html></center>");
 
-        int finalI = i;
         button.addActionListener(e -> {
-                    new TransactFrame(vendingMachine, finalI, prices[i]);
+                    new TransactFrame(vendingMachine, i,
+                            String.format("%.2f", vendingMachine.getSlots().get(i).getPrice()));
                     this.dispose();
         });
         return button;

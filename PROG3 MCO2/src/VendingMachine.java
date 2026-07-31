@@ -396,21 +396,28 @@ public class VendingMachine {
      * Prints a summary of the vending machine's activity to 
      * including the total amount of cash collected and the
      * number of items sold from each slot.
+     *
+     * @return the string to be printed that contains the summary.
      */
-    public void printSummary() {
+    public String printSummary() {
+        StringBuilder res = new StringBuilder();
+
         int i;
         float sum = 0;
 
-        System.out.println("====================================");
-        System.out.println("TRANSACTION SUMMARY:");
-        System.out.println("ITEMS SOLD: ");
+        res.append("====================================\n");
+        res.append("TRANSACTION SUMMARY:\n");
+        res.append("ITEMS SOLD: \n");
         for(i = 0; i<slots.size();i++){
-            System.out.printf("%-20s %d sold\n", slots.get(i).getItemType().getNAME() + ": ", slots.get(i).getSold());
+            res.append(String.format("%-20s %d sold\n", slots.get(i).getItemType().getNAME() + ": ", slots.get(i).getSold()));
             sum += slots.get(i).getSold() * slots.get(i).getPrice();
         }
 
-        System.out.printf("Total amount collected: Php %.2f\n", sum);
-        System.out.println("====================================");
+        res.append(String.format("Total amount collected: Php %.2f\n", sum));
+        res.append("====================================\n");
+
+        System.out.println(res.toString());
+        return res.toString();
     }
 
     /**

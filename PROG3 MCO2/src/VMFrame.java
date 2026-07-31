@@ -50,6 +50,45 @@ public class VMFrame extends JFrame implements ActionListener{
         running = true;
     }
 
+    public VMFrame(VendingMachine vendingMachine) {
+        this.setTitle("Vending Machine Simulator");
+        this.vendingMachine = vendingMachine;
+
+        this.setSize(new Dimension(600, 600));
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+
+        masterPanel.setSize(600, 600);
+        masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.Y_AXIS));
+
+        label.setFont(new Font("Bahnschrift", Font.PLAIN, 80));
+        subpanel.add(label);
+
+        //buttonPanel = new JPanel(new GridLayout(1, 3, 15, 10));
+        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+
+        create = new JButton("<html><center>CREATE<br>MACHINE</center></html>");
+        create.setPreferredSize(new Dimension(150, 50));
+        create.addActionListener(this);
+        test = new JButton("<html><center>TEST<br>MACHINE</center></html>");
+        test.setPreferredSize(new Dimension(150, 50));
+        test.addActionListener(this);
+        exit = new JButton("<html><center>EXIT</center></html>");
+        exit.setPreferredSize(new Dimension(150, 50));
+        exit.addActionListener(this);
+
+        buttonPanel.add(create);
+        buttonPanel.add(test);
+        buttonPanel.add(exit);
+
+        masterPanel.add(subpanel);
+        masterPanel.add(buttonPanel);
+        this.add(masterPanel);
+        this.setVisible(true);
+
+        running = true;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == create) {
