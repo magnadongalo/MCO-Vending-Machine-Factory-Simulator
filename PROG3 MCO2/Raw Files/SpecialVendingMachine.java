@@ -10,11 +10,16 @@ public class SpecialVendingMachine extends VendingMachine {
     }
 
     public void addOrder(Slot slot){
-        int currStock = slot.getCount();
+        int count = 0;
+        int currStock;
+        for(Slot s : customerOrder){
+            if (s.getItemType().equals(slot.getItemType()))
+                count++;
+        }
+        currStock = slot.getCount() - count;
         if (super.getSlots().get(0).getCount()>0) {
             if (currStock>0) {
                 customerOrder.add(slot);
-                currStock -= 1;
             } else {
                 System.out.println(slot.getItemType().getName() + " is out of stock.");
             }

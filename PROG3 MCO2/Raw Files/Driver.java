@@ -10,7 +10,8 @@ import java.util.List;
  */
 public class Driver {
     public static void main(String[] args) {
-        SpecialVendingMachine vendingMachine = null;
+        VendingMachine vendingMachine = null;
+        SpecialVendingMachine specialVendingMachine = null;
         Scanner scanner = new Scanner(System.in);
         char choice='0', choice1, choice2;
         String input;
@@ -21,11 +22,14 @@ public class Driver {
         while (choice!='3') {
             printOpenMenu();
             choice = scanner.next().charAt(0);
-
             switch (choice) {
+                case '0':
+                    vendingMachine = new VendingMachine();;
+                    System.out.println("Vending Machine Created");
+                    break;
                 case '1':
                     vendingMachine = new SpecialVendingMachine();
-                    System.out.println("Vending Machine Created");
+                    System.out.println("Special Vending Machine Created");
                     break;
                 case '2':
                     if(vendingMachine!=null) {
@@ -49,30 +53,32 @@ public class Driver {
                                         }
                                     }while(!isValid);
                                     if(vendingChoice==(vendingMachine.getSlots().size())+ 2 && vendingMachine instanceof SpecialVendingMachine){
+                                        specialVendingMachine= (SpecialVendingMachine) vendingMachine;
                                         do{
-                                            vendingMachine.printCustomOrder();
+                                            specialVendingMachine.printCustomOrder();
                                             if(scanner.hasNextInt()){
                                                 vendingChoice = scanner.nextInt();
-                                                isValid = vendingMachine.isValidOrder(vendingChoice);
+                                                isValid = specialVendingMachine.isValidOrder(vendingChoice);
                                                 if (!isValid)
                                                     System.out.println("Please enter a valid Option: ");
                                             } else {
                                                 scanner.next();
                                                 System.out.println("Please enter a valid Option: ");
                                             }
-                                            if (vendingChoice != vendingMachine.getSlots().size() && vendingChoice != vendingMachine.getSlots().size()+1) 
-                                                vendingMachine.addOrder(vendingMachine.getSlots().get(vendingChoice));
-                                        }while(vendingChoice != vendingMachine.getSlots().size() && vendingChoice != vendingMachine.getSlots().size()+1);
-                                        if(vendingChoice==vendingMachine.getSlots().size()){
+                                            if (vendingChoice != specialVendingMachine.getSlots().size() && vendingChoice != specialVendingMachine.getSlots().size()+1) 
+                                                specialVendingMachine.addOrder(specialVendingMachine.getSlots().get(vendingChoice));
+                                        }while(vendingChoice != specialVendingMachine.getSlots().size() && vendingChoice != specialVendingMachine.getSlots().size()+1);
+                                        if(vendingChoice==specialVendingMachine.getSlots().size()){
                                             payment = new Money();
-                                            if(payment(scanner, vendingMachine.calculatePrice(), payment)){
-                                                if(vendingMachine.transact(payment, vendingMachine.calculatePrice()).getTotal()!=payment.getTotal()){
-                                                    System.out.printf("%s Dispensed\n", vendingMachine.createProduct().getName());
+                                            if(payment(scanner, specialVendingMachine.calculatePrice(), payment)){
+                                                if(specialVendingMachine.transact(payment, specialVendingMachine.calculatePrice()).getTotal()!=payment.getTotal()){
+                                                    System.out.printf("%s Dispensed\n", specialVendingMachine.createProduct().getName());
                                                 }
                                             }    
                                         }else{
-                                            vendingMachine.clearOrder();
+                                            specialVendingMachine.clearOrder();
                                         }
+                                        vendingMachine = specialVendingMachine;
                                     } else if(vendingChoice!=(vendingMachine.getSlots().size())+1){
                                         payment = new Money();
                                         if(payment(scanner, vendingMachine.getSlots().get(vendingChoice-1).getPrice(), payment)){
@@ -178,7 +184,8 @@ public class Driver {
         System.out.println("\n\n====================================");
         System.out.println("         VENDING MACHINE SIM");
         System.out.println("====================================");
-        System.out.println("1 - Create Vending Machine");
+        System.out.println("0 - Create Vending Machine");
+        System.out.println("1 - Create Special Vending Machine");
         System.out.println("2 - Test Vending Machine");
         System.out.println("3 - Exit");
         System.out.println("------------------------------------");
