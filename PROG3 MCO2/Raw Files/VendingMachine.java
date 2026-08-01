@@ -410,7 +410,9 @@ public class VendingMachine {
         return slots;
     }
 
-    
+    /**
+     * Is the Vending Machine's interface.
+     */
     public void printVendingMachine(){
         int num = 0;
         System.out.println("\n\n====================================");
@@ -424,7 +426,9 @@ public class VendingMachine {
         System.out.println("------------------------------------");
         System.out.print("Your choice: ");
     }
-
+    /**
+     * Is the Maintenance interface.
+     */
     public void printMaintenance(){
         System.out.println("\n\n====================================");
         System.out.println("         YOUR VENDING MACHINE");
@@ -437,6 +441,9 @@ public class VendingMachine {
         System.out.print("Your choice: ");
     }
 
+    /**
+     * Is the Testing interface.
+     */
     public void printTestMenu(){
         System.out.println("\n\n====================================");
         System.out.println("         TEST VENDING MACHINE");
@@ -448,6 +455,11 @@ public class VendingMachine {
         System.out.print("Your choice: ");
     }
 
+    /**
+     * Tests if the user input is a valid option for customizing orders
+     *
+     * @return true if it is valid, false otherwise.
+     */
     public boolean isValidSlot(int choice){
         boolean isValid = false;
         for(int i=1;i<(this.getSlots().size());i++){

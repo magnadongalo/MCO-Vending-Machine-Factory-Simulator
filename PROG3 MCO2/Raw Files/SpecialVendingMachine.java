@@ -2,13 +2,20 @@ import java.util.ArrayList;
 
 public class SpecialVendingMachine extends VendingMachine {
 
+     /** Array containing customer's order */
     private ArrayList<Slot> customerOrder;
 
+     /** Creates a vending machine, initializes customer order */
     public SpecialVendingMachine(){
         super();
         customerOrder = new ArrayList<Slot>();
     }
 
+    /**
+     * Adds an order to the customerOrder ArrayList
+     * 
+     * @param slot the slot that will dispense the item ordered
+     */
     public void addOrder(Slot slot){
         int count = 0;
         int currStock;
@@ -29,6 +36,9 @@ public class SpecialVendingMachine extends VendingMachine {
         
     }
 
+     /**
+     * Clears the order
+     */
     public void clearOrder(){
         customerOrder.clear();
     }
@@ -52,6 +62,12 @@ public class SpecialVendingMachine extends VendingMachine {
             System.err.println("Adding Macapuno Jelly.");  
         }
     }
+
+     /**
+     * Sums up the total price of the customer's order
+     * 
+     * @return the price of the customer's order
+     */
     public float calculatePrice(){
         float f = 0.00f;
         for(Slot slot : customerOrder){
@@ -59,6 +75,13 @@ public class SpecialVendingMachine extends VendingMachine {
         }
         return f;
     }
+
+    /**
+     * Creates an item that is the customized product
+     * based on the customer's order.
+     * 
+     * @return the item created
+     */
     public Item createProduct(){
         Item product = null;
         int totalCal = 0;
@@ -80,7 +103,9 @@ public class SpecialVendingMachine extends VendingMachine {
         return product;
     }
 
-    @Override
+    /**
+     * Is the Vending Machine interface.
+     */
     public void printVendingMachine(){
         int num = 0;
         System.out.println("\n\n====================================");
@@ -96,6 +121,9 @@ public class SpecialVendingMachine extends VendingMachine {
         System.out.print("Your choice: ");
     }
 
+    /**
+     * Is the Custom Order interface.
+     */
     public void printCustomOrder(){
         int num = 0;
         System.out.println("\n\n====================================");
@@ -118,6 +146,11 @@ public class SpecialVendingMachine extends VendingMachine {
         System.out.print("Your choice: ");
     }
 
+    /**
+     * Tests if the user input is a valid option for customizing orders
+     *
+     * @return true if it is valid, false otherwise.
+     */
     public boolean isValidOrder(int choice){
         boolean isValid = false;
         for(int i=1;i<(this.getSlots().size()-1);i++){
@@ -129,6 +162,12 @@ public class SpecialVendingMachine extends VendingMachine {
     return isValid;
     }
 
+    /**
+     * Returns the ArrayList containing the customer's order in this
+     * Vending Machine.
+     *
+     * @return the slot's price
+     */
     public ArrayList<Slot> getCustomerOrder(){
         return this.customerOrder;
     }
