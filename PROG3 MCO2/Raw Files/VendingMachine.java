@@ -385,7 +385,8 @@ public class VendingMachine {
         System.out.println("Total amount collected: " + (balance.calculateTotal()-startingBalance.calculateTotal()));
         System.out.println("ITEMS SOLD: ");
         for(int i = 0; i<slots.size();i++){
-            System.out.printf("%-20s %d sold\n", slots.get(i).getItemType().getName() + ":", slots.get(i).getStartingCount()-slots.get(i).getCount());
+            System.out.printf("%-20s %d sold ", slots.get(i).getItemType().getName() + ":", slots.get(i).getStartingCount()-slots.get(i).getCount());
+            System.out.printf("(ORIGINAL STOCK: %d || CURRENT STOCK: %d)\n", slots.get(i).getStartingCount(), slots.get(i).getCount());
         }
         System.out.println("====================================");
     }

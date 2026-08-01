@@ -65,9 +65,9 @@ public class Driver {
                                                 scanner.next();
                                                 System.out.println("Please enter a valid Option: ");
                                             }
-                                            if (vendingChoice != specialVendingMachine.getSlots().size() && vendingChoice != specialVendingMachine.getSlots().size()+1) 
+                                            if (isValid && vendingChoice != specialVendingMachine.getSlots().size() && vendingChoice != specialVendingMachine.getSlots().size()+1) 
                                                 specialVendingMachine.addOrder(specialVendingMachine.getSlots().get(vendingChoice));
-                                        }while(vendingChoice != specialVendingMachine.getSlots().size() && vendingChoice != specialVendingMachine.getSlots().size()+1);
+                                        }while(!isValid || (vendingChoice != specialVendingMachine.getSlots().size() && vendingChoice != specialVendingMachine.getSlots().size()+1));
                                         if(vendingChoice==specialVendingMachine.getSlots().size()){
                                             payment = new Money();
                                             if(payment(scanner, specialVendingMachine.calculatePrice(), payment)){
