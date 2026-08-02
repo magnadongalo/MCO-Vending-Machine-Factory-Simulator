@@ -405,18 +405,19 @@ public class VendingMachine {
         int i;
         float sum = 0;
 
-        res.append("====================================\n");
+        res.append("====================================================================\n");
         res.append("TRANSACTION SUMMARY:\n");
         res.append("ITEMS SOLD: \n");
         for(i = 0; i<slots.size();i++){
-            res.append(String.format("%-20s %d sold\n", slots.get(i).getItemType().getNAME() + ": ", slots.get(i).getSold()));
+            res.append(String.format("%-20s %d sold", slots.get(i).getItemType().getNAME() + ": ", slots.get(i).getSold()));
+            res.append(String.format("(ORIGINAL STOCK: %d || CURRENT STOCK: %d)\n", slots.get(i).getStartingCount(), slots.get(i).getCount()));
             sum += slots.get(i).getSold() * slots.get(i).getPrice();
         }
 
         res.append(String.format("Total amount collected: Php %.2f\n", sum));
-        res.append("====================================\n");
+        res.append("=====================================================================\n");
 
-        System.out.println(res.toString());
+        System.out.println(res);
         return res.toString();
     }
 

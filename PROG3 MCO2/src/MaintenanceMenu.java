@@ -7,7 +7,7 @@ public class MaintenanceMenu extends JFrame implements ActionListener {
     private JPanel masterPanel;
     private JPanel subPanel;
     private JPanel buttonPanel;
-    private JLabel label = new JLabel("<html><center>MAINTENANCE<br>FEATURES</center></html>");
+    private JLabel label = new JLabel("<html><center>MAINTENANCE FEATURES</center></html>");
     private JButton restock, replenish, summary, returnToMenu;
     private VendingMachine vendingMachine;
     private boolean running = false;
@@ -16,19 +16,23 @@ public class MaintenanceMenu extends JFrame implements ActionListener {
         this.setTitle("Maintenance Features");
         this.vendingMachine = vendingMachine;
 
-        this.setSize(600, 600);
+        this.setSize(600, 300);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
         masterPanel = new JPanel();
-        masterPanel.setSize(600, 600);
+        masterPanel.setSize(600, 300);
         masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.Y_AXIS));
+        masterPanel.setBackground(Color.decode("#242424"));
 
         subPanel = new JPanel();
-        label.setFont(new Font("Bahnschrift", Font.PLAIN, 50));
+        label.setFont(new Font("Century Gothic", Font.BOLD, 45));
+        label.setForeground(Color.WHITE);
         subPanel.add(label);
+        subPanel.setBackground(Color.decode("#242424"));
 
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        buttonPanel.setBackground(Color.decode("#242424"));
 
         restock = new JButton("<html><center>RESTOCK ITEM</center></html>");
         restock.setPreferredSize(new Dimension(150, 50));

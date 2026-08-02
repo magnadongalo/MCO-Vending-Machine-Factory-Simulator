@@ -16,7 +16,7 @@ public class RestockMenu extends JFrame {
 
         this.vendingMachine = vendingMachine;
 
-        this.setTitle("Replenish Change Denominations");
+        this.setTitle("Restock Items");
 
         this.setSize(new Dimension(600, 600));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -25,16 +25,20 @@ public class RestockMenu extends JFrame {
         masterPanel = new JPanel();
         masterPanel.setPreferredSize(new Dimension(600, 600));
         masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.Y_AXIS));
+        masterPanel.setBackground(Color.decode("#242424"));
 
         subPanel = new JPanel();
         label = new JLabel();
-        label.setFont(new Font("Bahnschrift", Font.PLAIN, 25));
-        label.setText("<html><center>Replenish which denomination?</center></html>");
+        label.setFont(new Font("Century Gothic", Font.BOLD, 60));
+        label.setText("<html><center>Restock<br>which items?</center></html>");
+        label.setForeground(Color.WHITE);
         subPanel.add(label);
+        subPanel.setBackground(Color.decode("#242424"));
         masterPanel.add(subPanel);
 
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(3, 3, 15, 15));
+        buttonPanel.setBackground(Color.decode("#242424"));
 
         for (i=0; i<8; i++) {
             JButton button = getJButton(vendingMachine, i);

@@ -17,6 +17,7 @@ public class SummaryMenu extends JFrame{
         masterPanel = new JPanel();
         masterPanel.setPreferredSize(new Dimension(600, 300));
         masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.Y_AXIS));
+        masterPanel.setBackground(Color.decode("#242424"));
 
         //summaryText = new JTextArea(vendingMachine.printSummary());
         summaryText = new JTextArea(300, 300);
@@ -25,6 +26,8 @@ public class SummaryMenu extends JFrame{
         summaryText.setLineWrap(true);
         summaryText.setFont(new Font("Consolas", Font.BOLD, 13));
         summaryText.setAlignmentX(Component.LEFT_ALIGNMENT);
+        summaryText.setBackground(Color.decode("#242424"));
+        summaryText.setForeground(Color.WHITE);
 
         confirmExit = new JButton("<html><center>Exit and Close</html></center>");
         confirmExit.addActionListener(e ->  {
@@ -33,6 +36,7 @@ public class SummaryMenu extends JFrame{
         });
         subPanel = new JPanel();
         subPanel.add(confirmExit);
+        subPanel.setBackground(Color.decode("#242424"));
 
         masterPanel.add(summaryText);
         masterPanel.add(subPanel);
