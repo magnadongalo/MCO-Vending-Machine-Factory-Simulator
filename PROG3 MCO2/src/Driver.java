@@ -69,14 +69,18 @@ public class Driver extends JFrame implements ActionListener{
         create = new JButton("<html><center>CREATE<br>MACHINE</center></html>");
         create.setPreferredSize(new Dimension(150, 50));
         create.addActionListener(this);
+        create.setFont(new Font("Century Gothic", Font.BOLD, 12));
         createSpecial = new JButton("<html><center>CREATE SPECIAL<br>MACHINE</center></html>");
         createSpecial.setPreferredSize(new Dimension(150, 50));
         createSpecial.addActionListener(this);
+        createSpecial.setFont(new Font("Century Gothic", Font.BOLD, 12));
         test = new JButton("<html><center>TEST<br>MACHINE</center></html>");
         test.setPreferredSize(new Dimension(150, 50));
         test.addActionListener(this);
+        test.setFont(new Font("Century Gothic", Font.BOLD, 12));
         exit = new JButton("<html><center>EXIT</center></html>");
         exit.setPreferredSize(new Dimension(150, 50));
+        exit.setFont(new Font("Century Gothic", Font.BOLD, 12));
         exit.addActionListener(this);
 
         buttonPanel.add(create);

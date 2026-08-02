@@ -4,19 +4,44 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * This is the JFrame that displays the options for the vending machine's
+ * transactions.
+ * @author Gutierrez, Jonathan Jr
+ * @author Maullon, Edriel Lexine
+ */
 public class TransactFrame extends JFrame implements ActionListener {
+    /** The primary JPanel that stores all the GUI elements. Exists for the use of BoxLayout.*/
     private JPanel masterPanel;
+    /** The auxiliary JPanel that contains the JLabel for the window. */
     private JPanel subPanel;
+    /** The auxiliary JPanel that contains all the program's JButtons.*/
     private JPanel buttonPanel;
+    /** The JLabel that shows the item and its price. */
     private JLabel label;
+    /** The JTextField that shows the total price of the inputted payment. */
     private JTextField total;
-    private JTextField thousand, fiveH, hund, fifty, twenty, ten, five, one, reverse;
-    private VendingMachine vendingMachine;
+    /** The JTextField that shows how many denominations are currently to be paid. */
+    private JTextField thousand, fiveH, hund, fifty, twenty, ten, five, one;
+    /** The JTextField that shows if pressing the button adds or subtracts the denominations. */
+    private JTextField reverse;
+    /** A boolean that tells whether or not pressing the button adds or subtracts the denominations.*/
     private boolean add = true;
+    /** The Money class that collects the input and adds it as payment for the item. */
     private Money payment = new Money();
+    /** The index of the item slot in the vending machine.*/
     private int index = 0;
+    /** Tells whether or not a custom order is being made. */
     private boolean isCustom = false;
+    /** The Vending Machine that is used by the program.*/
+    private VendingMachine vendingMachine;
 
+    /**
+     * Initializes the Transaction Menu.
+     * @param vendingMachine is the vending machine passed from the previous GUI class.
+     * @param index the slot at which the item is located.
+     * @param price the price of the item, formatted as a string for convenience of display.
+     */
     public TransactFrame(VendingMachine vendingMachine, int index, String price) {
         this.index = index;
         this.vendingMachine = vendingMachine;
@@ -31,6 +56,13 @@ public class TransactFrame extends JFrame implements ActionListener {
         initialize();
     }
 
+    /**
+     * Initializes the Transaction Menu.
+     * @param vendingMachine is the vending machine passed from the previous GUI class. It must be of the
+     *                       SpecialVendingMachine class.
+     * @param price the price of the item, formatted as a string for convenience of display.
+     * @param isCustom tells whether or not the order made is custom.
+     */
     public TransactFrame(SpecialVendingMachine vendingMachine, String price, boolean isCustom) {
         this.vendingMachine = vendingMachine;
         this.isCustom = isCustom;
@@ -44,6 +76,10 @@ public class TransactFrame extends JFrame implements ActionListener {
         initialize();
     }
 
+    /**
+     * These are the common lines used in both constructors for the TransactFrame class,
+     * collected into one method.
+     */
     public void initialize() {
         int i;
 
@@ -169,17 +205,28 @@ public class TransactFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Returns a JButton that allows the input of the options that could be done on the GUI.
+     * @param vendingMachine the vending machine used by the program.
+     * @param i the index that tells what string of text the button will display.
+     * @return a JButton that allows the input of the denominations.
+     */
     private JButton getJButton(VendingMachine vendingMachine, int i) {
         String[] denoms = {"1000.00", "500.00", "100.00", "50.00", "20.00", "10.00", "5.00", "1.00",
                 "REVERSE", "ENTER", "EXIT"};
 
         JButton button = new JButton(denoms[i]);
+        button.setFont(new Font("Century Gothic", Font.BOLD, 12));
 
         button.addActionListener(this);
 
         return button;
     }
 
+    /**
+     * Processes the event in which a button is pressed.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
@@ -336,6 +383,12 @@ public class TransactFrame extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Shows the messages that tells the status of the custom order.
+     * @param messages the ArrayList of messages that will be displayed, with an interval of 1.5 seconds
+     *                 for each string.
+     * @param vendingMachine The SpecialVendingMachine used by the program.
+     */
     public void showMessages(ArrayList<String> messages, SpecialVendingMachine vendingMachine) {
         final int[] counter = {0};
         JFrame subFrame = new JFrame("Status");

@@ -5,13 +5,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This is the JFrame that displays the options for the vending machine's
+ * replenishing features.
+ * @author Gutierrez, Jonathan Jr
+ * @author Maullon, Edriel Lexine
+ */
 public class ReplenishMenu extends JFrame implements ActionListener {
+    /** The primary JPanel that stores all the GUI elements. Exists for the use of BoxLayout.*/
     private JPanel masterPanel;
+    /** The auxiliary JPanel that contains the JLabel for the window. */
     private JPanel subPanel;
+    /** The auxiliary JPanel that contains all the program's JButtons.*/
     private JPanel buttonPanel;
+    /** The JLabel that shows the user what to do. */
     private JLabel label;
+    /** The Vending Machine that will be used by the program.*/
     private VendingMachine vendingMachine;
 
+    /**
+     * Initializes the Replenish Change menu.
+     * @param vendingMachine is the vending machine passed from the previous GUI class.
+     */
     public ReplenishMenu(VendingMachine vendingMachine) {
         int i;
 
@@ -53,16 +68,27 @@ public class ReplenishMenu extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Returns a JButton that allows the input of the options that could be done on the GUI.
+     * @param vendingMachine the vending machine used by the program.
+     * @param i the index that tells what string of text the button will display.
+     * @return a JButton that allows the input of the denominations.
+     */
     public JButton getJButton(VendingMachine vendingMachine, int i) {
         String[] denoms = {"1000.00", "500.00", "100.00", "50.00", "20.00", "10.00", "5.00", "1.00",
                 "ALL", "EXIT"};
 
         JButton button = new JButton(denoms[i]);
+        button.setFont(new Font("Century Gothic", Font.BOLD, 12));
         button.addActionListener(this);
 
         return button;
     }
 
+    /**
+     * Processes the event in which a button is pressed.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();

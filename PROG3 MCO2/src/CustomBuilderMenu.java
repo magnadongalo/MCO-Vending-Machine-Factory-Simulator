@@ -3,13 +3,29 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This the JFrame that displays the options for making a custom order when the option
+ * is selected with the special vending machine.
+ * @author Gutierrez, Jonathan Jr
+ * @author Maullon, Edriel Lexine
+ */
 public class CustomBuilderMenu extends FeaturesMenu implements ActionListener {
+    /** The buttons used for entering the order, and clearing the order.*/
     private JButton enter, clear;
+    /** The JTextField that shows several messages informing the user.*/
     private JTextField status;
-    private SpecialVendingMachine specialVM = new SpecialVendingMachine();
+    /** An integer array that contains the conunters for all eight items in the vending machine.*/
     private int[] counter;
+    /** A boolean that prevents the user from making a transaction when no valid option is made.*/
     private boolean nothingPressed = true;
+    /** The Vending Machine that is used by the program. It must be of the SpecialVendingMachine class.*/
+    private SpecialVendingMachine specialVM = new SpecialVendingMachine();
 
+    /**
+     * Initializes the Custom Drink Builder menu.
+     * @param vendingMachine is the vending machine passed from the previous GUI class.
+     *                       it NEEDS to be of the SpecialVendingMachine class.
+     */
     public CustomBuilderMenu(SpecialVendingMachine vendingMachine) {
         super(vendingMachine);
         specialVM = vendingMachine;
@@ -25,9 +41,11 @@ public class CustomBuilderMenu extends FeaturesMenu implements ActionListener {
             this.dispose();
             new CustomBuilderMenu(specialVM);
         });
+        clear.setFont(new Font("Century Gothic", Font.BOLD, 12));
         enter = new JButton("<html><center>ENTER</center></html>");
         enter.setPreferredSize(new Dimension(150, 50));
         enter.addActionListener(this);
+        enter.setFont(new Font("Century Gothic", Font.BOLD, 12));
 
         status = new JTextField(100);
         status.setText("");
@@ -47,6 +65,14 @@ public class CustomBuilderMenu extends FeaturesMenu implements ActionListener {
         buttonPanel2.add(status);
     }
 
+    /**
+     * Returns a JButton that contains the information of one of the items in each slot
+     * of the vending machine.
+     * @param vendingMachine the vending machine used by the program.
+     * @param i the index at which slot the item of interest is in.
+     * @return a JButton that contains the name, price, calories, and stock count of
+     *         an item.
+     */
     @Override
     protected JButton getJButton(VendingMachine vendingMachine, int i) {
         JButton button = new JButton("<html><center>" +
@@ -57,6 +83,7 @@ public class CustomBuilderMenu extends FeaturesMenu implements ActionListener {
                 "</html></center>");
 
         button.setHorizontalAlignment(JButton.CENTER);
+        button.setFont(new Font("Century Gothic", Font.BOLD, 12));
 
         if (i == 0) {
             button.setText("<html><center>" +
@@ -96,6 +123,10 @@ public class CustomBuilderMenu extends FeaturesMenu implements ActionListener {
         return button;
     }
 
+    /**
+     * Processes the event in which a button is pressed.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == returnToMenu) {

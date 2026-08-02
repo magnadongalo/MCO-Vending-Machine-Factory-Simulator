@@ -53,12 +53,15 @@ public class TestMenu extends JFrame implements ActionListener {
         vendingFeatures = new JButton("<html><center>VENDING<br>FEATURES</center></html>");
         vendingFeatures.setPreferredSize(new Dimension(150, 50));
         vendingFeatures.addActionListener(this);
+        vendingFeatures.setFont(new Font("Century Gothic", Font.BOLD, 12));
         maintenance = new JButton("<html><center>MAINTENANCE</center></html>");
         maintenance.setPreferredSize(new Dimension(150, 50));
         maintenance.addActionListener(this);
+        maintenance.setFont(new Font("Century Gothic", Font.BOLD, 12));
         returnToMenu = new JButton("<html><center>RETURN<br>TO MENU</center></html>");
         returnToMenu.setPreferredSize(new Dimension(150, 50));
         returnToMenu.addActionListener(this);
+        returnToMenu.setFont(new Font("Century Gothic", Font.BOLD, 12));
 
         buttonPanel.add(vendingFeatures);
         buttonPanel.add(maintenance);

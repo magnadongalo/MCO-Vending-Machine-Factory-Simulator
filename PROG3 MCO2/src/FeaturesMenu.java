@@ -72,6 +72,7 @@ public class FeaturesMenu extends JFrame implements ActionListener {
         customOrder.setPreferredSize(new Dimension(150, 50));
         customOrder.addActionListener(this);
         customOrder.setEnabled(false);
+        customOrder.setFont(new Font("Century Gothic", Font.BOLD, 12));
 
         buttonPanel2.add(customOrder);
 
@@ -81,6 +82,7 @@ public class FeaturesMenu extends JFrame implements ActionListener {
         returnToMenu = new JButton("<html><center>RETURN<br>TO MENU</center></html>");
         returnToMenu.setPreferredSize(new Dimension(150, 50));
         returnToMenu.addActionListener(this);
+        returnToMenu.setFont(new Font("Century Gothic", Font.BOLD, 12));
         buttonPanel2.add(returnToMenu);
         buttonPanel2.setBackground(Color.decode("#242424"));
 
@@ -108,6 +110,7 @@ public class FeaturesMenu extends JFrame implements ActionListener {
                 "</html></center>");
 
         button.setHorizontalAlignment(JButton.CENTER);
+        button.setFont(new Font("Century Gothic", Font.BOLD, 12));
 
         button.addActionListener(e -> {
                     new TransactFrame(vendingMachine, i,

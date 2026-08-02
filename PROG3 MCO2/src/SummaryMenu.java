@@ -2,11 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SummaryMenu extends JFrame{
+    /** The primary JPanel that stores all the GUI elements. */
     private JPanel masterPanel;
+    /** The auxiliary JPanel that contains the JLabel for the window. */
     private JPanel subPanel;
+    /** The button allowing to user to confirm what is displayed on the usmmary and exit.*/
     private JButton confirmExit;
+    /** The text area where the summary of transactions is displayed.*/
     private JTextArea summaryText;
 
+    /**
+     * Initializes the Transaction Summary menu.
+     * @param vendingMachine is the vending machine passed from the previous GUI class.
+     */
     public SummaryMenu(VendingMachine vendingMachine) {
         this.setTitle("Summary of Transactions");
 
@@ -34,6 +42,7 @@ public class SummaryMenu extends JFrame{
             this.dispose();
             new MaintenanceMenu(vendingMachine);
         });
+        confirmExit.setFont(new Font("Century Gothic", Font.BOLD, 12));
         subPanel = new JPanel();
         subPanel.add(confirmExit);
         subPanel.setBackground(Color.decode("#242424"));
@@ -41,7 +50,6 @@ public class SummaryMenu extends JFrame{
         masterPanel.add(summaryText);
         masterPanel.add(subPanel);
         this.add(masterPanel);
-        //this.pack();
         this.setVisible(true);
     }
 }

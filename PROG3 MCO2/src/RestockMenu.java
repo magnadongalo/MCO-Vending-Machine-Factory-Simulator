@@ -3,14 +3,30 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This is the JFrame that displays the options for the vending machine's
+ * restocking features.
+ * @author Gutierrez, Jonathan Jr
+ * @author Maullon, Edriel Lexine
+ */
 public class RestockMenu extends JFrame {
+    /** The primary JPanel that stores all the GUI elements. Exists for the use of BoxLayout.*/
     private JPanel masterPanel;
+    /** The auxiliary JPanel that contains the JLabel for the window. */
     private JPanel subPanel;
+    /** The auxiliary JPanel that contains all the program's JButtons.*/
     private JPanel buttonPanel;
+    /** The JLabel that shows the user what to do. */
     private JLabel label;
-    private VendingMachine vendingMachine;
+    /** The button used to exit and return to the Maintenance Features menu.*/
     private JButton exit;
+    /** The Vending Machine that will be used by the program.*/
+    private VendingMachine vendingMachine;
 
+    /**
+     * Initializes the Restock Item menu.
+     * @param vendingMachine is the vending machine passed from the previous GUI class.
+     */
     public RestockMenu(VendingMachine vendingMachine) {
         int i;
 
@@ -50,6 +66,7 @@ public class RestockMenu extends JFrame {
             this.dispose();
             new MaintenanceMenu(vendingMachine);
         });
+        exit.setFont(new Font("Century Gothic", Font.BOLD, 12));
         buttonPanel.add(exit);
 
         masterPanel.add(subPanel);
@@ -59,6 +76,14 @@ public class RestockMenu extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Returns a JButton that contains the information of one of the items in each slot
+     * of the vending machine.
+     * @param vendingMachine the vending machine used by the program.
+     * @param i the index at which slot the item of interest is in.
+     * @return a JButton that contains the name, price, calories, and stock count of
+     *         an item.
+     */
     private JButton getJButton(VendingMachine vendingMachine, int i) {
         JButton button = new JButton("<html><center>" +
                 vendingMachine.getSlots().get(i).getItemType().getNAME() + "<br>" +
@@ -67,15 +92,22 @@ public class RestockMenu extends JFrame {
                 + " kcal" + "<br>" + vendingMachine.getSlots().get(i).getCount() + " in stock" +
                 "</html></center>");
 
+        button.setFont(new Font("Century Gothic", Font.BOLD, 12));
+
         button.addActionListener(e ->  {
-            replenishMenu(vendingMachine, i);
+            askInput(vendingMachine, i);
             this.setEnabled(true);
         });
 
         return button;
     }
 
-    private void replenishMenu(VendingMachine vendingMachine, int i) {
+    /**
+     * Asks the user to input an integer on how many items to add to the stock.
+     * @param vendingMachine the vending machine used by the program.
+     * @param i the index at which slot the item of interest is in.
+     */
+    private void askInput(VendingMachine vendingMachine, int i) {
         this.dispose();
 
         JFrame subWindow = new JFrame("Replenish Item Stock");
@@ -83,9 +115,13 @@ public class RestockMenu extends JFrame {
         subWindow.setDefaultCloseOperation(EXIT_ON_CLOSE);
         subWindow.setLayout(new FlowLayout());
         subWindow.setLocationRelativeTo(null);
+        subWindow.setBackground(Color.decode("#242424"));
 
         JLabel label = new JLabel("How much?: ");
         JTextField textField = new JTextField(20);
+        textField.setBackground(Color.decode("#242424"));
+        textField.setForeground(Color.WHITE);
+        textField.setFont(new Font("Century Gothic", Font.BOLD, 12));
         JButton button = new JButton("Submit");
 
         button.addActionListener(new ActionListener() {
